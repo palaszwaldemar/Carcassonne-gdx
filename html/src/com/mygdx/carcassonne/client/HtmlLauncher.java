@@ -3,7 +3,7 @@ package com.mygdx.carcassonne.client;
 import com.badlogic.gdx.ApplicationListener;
 import com.badlogic.gdx.backends.gwt.GwtApplication;
 import com.badlogic.gdx.backends.gwt.GwtApplicationConfiguration;
-import com.mygdx.carcassonne.Carcassonne;
+import com.mygdx.carcassonne.Drop;
 
 public class HtmlLauncher extends GwtApplication {
 
@@ -17,6 +17,6 @@ public class HtmlLauncher extends GwtApplication {
 
         @Override
         public ApplicationListener createApplicationListener () {
-                return new Carcassonne();
+                return new Drop();
         }
 }
