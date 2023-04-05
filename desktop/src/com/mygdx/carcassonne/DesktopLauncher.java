@@ -10,6 +10,7 @@ public class DesktopLauncher {
 		Lwjgl3ApplicationConfiguration config = new Lwjgl3ApplicationConfiguration();
 		config.setForegroundFPS(60);
 		config.setTitle("Carcassonne");
-		new Lwjgl3Application(new Carcassonne(), config);
+		config.setWindowedMode(GuiParameters.WIDTH, GuiParameters.HEIGHT);
+		new Lwjgl3Application(new Carcassonne(), config); // CHECK : 05.04.2023 jak to działa? dlaczego ten obiekt nie jest do niczego przypisany?
 	}
 }
