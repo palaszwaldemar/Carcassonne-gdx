@@ -5,10 +5,10 @@ import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
 public class Carcassonne extends Game {
-	public SpriteBatch batch; // CHECK : 05.04.2023 dlaczego te pola są publiczne?
-	public BitmapFont font;
+	private SpriteBatch batch;
+	private BitmapFont font;
 
-	@Override // CHECK : 05.04.2023 dlaczego tylko ta metda jest implementowana? Skąd ta metoda jest implementowana?
+	@Override
 	public void create() {
 		batch = new SpriteBatch();
 		font = new BitmapFont();
@@ -22,5 +22,13 @@ public class Carcassonne extends Game {
 	public void dispose() {
 		batch.dispose();
 		font.dispose();
+	}
+
+	public SpriteBatch getBatch() {
+		return batch;
+	}
+
+	public BitmapFont getFont() {
+		return font;
 	}
 }
