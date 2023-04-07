@@ -1,12 +1,20 @@
 package com.mygdx.carcassonne;
 
 import com.badlogic.gdx.Screen;
+import com.badlogic.gdx.graphics.OrthographicCamera;
+import com.badlogic.gdx.scenes.scene2d.Stage;
+import com.badlogic.gdx.utils.viewport.ScreenViewport;
 
 public class GameScreen implements Screen {
     private Carcassonne game;
+    private Stage stage;
+    private OrthographicCamera camera;
 
     public GameScreen(Carcassonne game) {
         this.game = game;
+        camera = new OrthographicCamera();
+        camera.setToOrtho(false, GuiParams.WIDTH, GuiParams.HEIGHT);
+        stage = new Stage(new ScreenViewport(camera), game.getBatch());
     }
 
     @Override
@@ -44,3 +52,5 @@ public class GameScreen implements Screen {
 
     }
 }
+// TODO: 07.04.2023 //https://github.com/dixu11/deckard-thief/blob/master/core/src/com/deckard/client/core/CombatScreen.java
+
