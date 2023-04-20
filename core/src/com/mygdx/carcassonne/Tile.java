@@ -74,6 +74,14 @@ public class Tile extends Actor {
         return city[i];
     }
 
+    public int getGridX() {
+        return gridX;
+    }
+
+    public int getGridY() {
+        return gridY;
+    }
+
     @Override
     public String toString() {
         return "carcassone.Tile{" +

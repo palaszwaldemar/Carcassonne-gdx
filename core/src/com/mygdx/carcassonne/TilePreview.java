@@ -13,7 +13,7 @@ public class TilePreview {
     void render(Graphics g) {
         int pixelX = 10;
         int pixelY = 10;
-        tile.render(g, pixelX, pixelY);
+//        tile.render(g, pixelX, pixelY);
         g.drawString("ACTUAL TILE", pixelX + 15, pixelY + 115);
     }
 

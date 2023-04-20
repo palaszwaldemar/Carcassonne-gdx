@@ -24,8 +24,8 @@ public class SpawnValidator {
             if (tile.equals(tilePreview.getTile())) {
                 continue;
             }
-            int otherXDifference = Math.abs(tile.getX() - x);
-            int otherYDifference = Math.abs(tile.getY() - y);
+            int otherXDifference = Math.abs(tile.getGridX() - x);
+            int otherYDifference = Math.abs(tile.getGridY() - y);
             int sum = otherXDifference + otherYDifference;
             if (sum == 1) {
                 return true;
