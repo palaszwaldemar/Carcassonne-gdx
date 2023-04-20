@@ -1,8 +1,11 @@
 package com.mygdx.carcassonne;
 
 import com.badlogic.gdx.Screen;
+import com.badlogic.gdx.graphics.Camera;
+import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.scenes.scene2d.Stage;
+import com.badlogic.gdx.utils.ScreenUtils;
 import com.badlogic.gdx.utils.viewport.ScreenViewport;
 
 public class GameScreen implements Screen {
@@ -24,7 +27,11 @@ public class GameScreen implements Screen {
 
     @Override
     public void render(float delta) {
-
+        ScreenUtils.clear(Color.BLACK);
+        camera.update();
+        game.getBatch().setProjectionMatrix(camera.combined);
+        stage.act(delta);
+        stage.draw();
     }
 
     @Override

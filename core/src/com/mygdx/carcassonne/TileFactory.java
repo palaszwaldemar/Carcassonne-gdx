@@ -1,6 +1,7 @@
 package com.mygdx.carcassonne;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.files.FileHandle;
 import com.badlogic.gdx.graphics.Texture;
 
 import javax.imageio.ImageIO;
@@ -16,17 +17,16 @@ public class TileFactory {
 
     Queue<Tile> getListOfTile() {
         LinkedList<Tile> tiles = new LinkedList<>();
-        try {
-            Scanner reader = new Scanner(new File("src\\main\\resources\\TilesInfo.csv"));
+            FileHandle fileHandle = Gdx.files.internal("TilesInfo.csv");
+            String text = fileHandle.readString("UTF-8");
+            Scanner reader = new Scanner(text);
             while (reader.hasNextLine()) {
                 String line = reader.nextLine();
                 Tile tile = parseCsvLineToTile(line);
                 tiles.add(tile);
             }
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
         Collections.shuffle(tiles);
+        System.out.println(tiles);
         return tiles;
     }
 

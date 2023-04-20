@@ -8,7 +8,6 @@ import com.badlogic.gdx.scenes.scene2d.Actor;
 import java.util.Arrays;
 
 public class Tile extends Actor {
-    private static final int SIZE = 100;
 
     //gui
     private int gridX;
@@ -23,6 +22,7 @@ public class Tile extends Actor {
         this.gridX = gridX;
         this.gridY = gridY;
         this.image = image;
+        setBounds(Cords.xToPixels(gridX), Cords.yToPixels(gridY), GuiParams.SIZE, GuiParams.SIZE);
     }
 
     public void draw(Batch batch, float parentAlpha) {
@@ -40,10 +40,12 @@ public class Tile extends Actor {
 
     public void setGridX(int gridX) {
         this.gridX = gridX;
+        setX(Cords.xToPixels(gridX));
     }
 
     public void setGridY(int gridY) {
         this.gridY = gridY;
+        setY(Cords.yToPixels(gridY));
     }
 
     public void setRoad(char side) {
