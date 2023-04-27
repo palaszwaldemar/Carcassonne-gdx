@@ -1,14 +1,13 @@
 package com.mygdx.carcassonne;
 
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
-import com.badlogic.gdx.graphics.Camera;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.utils.ScreenUtils;
 import com.badlogic.gdx.utils.viewport.ScreenViewport;
 
-import java.awt.*;
 import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 import java.util.List;
@@ -39,7 +38,7 @@ public class GameScreen implements Screen {
         stage = new Stage(new ScreenViewport(camera), game.getBatch());
         tileFactory = new TileFactory();
         tilesPile = tileFactory.getListOfTile();
-        tilePreview =  new TilePreview();
+        tilePreview =  new TilePreview(stage);
         spawnValidator = new SpawnValidator(tilesBoard,tilePreview);
         endButton = new EndButton();
 
@@ -50,6 +49,8 @@ public class GameScreen implements Screen {
         tile.setGridY(4);
         tilesBoard.add(tile);
         drawNextTile();
+
+        Gdx.input.setInputProcessor(stage);
     }
 
     @Override
@@ -59,7 +60,7 @@ public class GameScreen implements Screen {
 
     @Override
     public void render(float delta) {
-        ScreenUtils.clear(Color.BLACK);
+        ScreenUtils.clear(Color.WHITE);
         camera.update();
         game.getBatch().setProjectionMatrix(camera.combined);
         stage.act(delta);
@@ -118,7 +119,7 @@ public class GameScreen implements Screen {
     }
 
     private void drawNextTile() {
-        tilePreview.setTile(tilesPile.poll()); // TODO: 16.02.2023 wysypie się jak się skończą
+        tilePreview.addTile(tilesPile.poll()); // TODO: 16.02.2023 wysypie się jak się skończą
     }
 
 

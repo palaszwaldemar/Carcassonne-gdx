@@ -4,6 +4,8 @@ import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.scenes.scene2d.Actor;
+import com.badlogic.gdx.scenes.scene2d.InputEvent;
+import com.badlogic.gdx.scenes.scene2d.utils.DragListener;
 
 import java.util.Arrays;
 
@@ -23,6 +25,7 @@ public class Tile extends Actor {
         this.gridY = gridY;
         this.image = image;
         setBounds(Cords.xToPixels(gridX), Cords.yToPixels(gridY), GuiParams.SIZE, GuiParams.SIZE);
+        addListener(new DragTileListener());
     }
 
     public void draw(Batch batch, float parentAlpha) {
@@ -90,5 +93,24 @@ public class Tile extends Actor {
                 ", road=" + Arrays.toString(road) +
                 '}';
 
+    }
+
+    class DragTileListener extends DragListener {
+        private float deltaX;
+        private float deltaY;
+
+        @Override
+        public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
+            deltaX = x;
+            deltaY = y;
+            return super.touchDown(event, x, y, pointer, button);
+        }
+
+        @Override
+        public void drag(InputEvent event, float x, float y, int pointer) {
+            float newX = getX() + x - deltaX;
+            float newY = getY() + y - deltaY;
+            setPosition(newX, newY);
+        }
     }
 }

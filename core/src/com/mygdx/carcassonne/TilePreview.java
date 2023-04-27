@@ -1,13 +1,22 @@
 package com.mygdx.carcassonne;
 
+import com.badlogic.gdx.scenes.scene2d.Stage;
+
 import java.awt.*;
 
 public class TilePreview {
+    private final Stage stage;
     private Tile tile;
 
+    public TilePreview(Stage stage) {
+        this.stage = stage;
+    }
 
-    public void setTile(Tile tile) {
+    public void addTile(Tile tile) {
         this.tile = tile;
+        stage.addActor(tile);
+        tile.setGridX(0);
+        tile.setGridY(8);
     }
 
     void render(Graphics g) {
