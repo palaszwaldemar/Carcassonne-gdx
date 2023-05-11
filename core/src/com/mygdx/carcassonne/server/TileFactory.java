@@ -2,7 +2,6 @@ package com.mygdx.carcassonne.server;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.files.FileHandle;
-import com.badlogic.gdx.graphics.Texture;
 
 import java.util.Collections;
 import java.util.LinkedList;
@@ -13,7 +12,7 @@ public class TileFactory {
 
     Queue<Tile> getListOfTile() {
         LinkedList<Tile> tiles = new LinkedList<>();
-            FileHandle fileHandle = Gdx.files.internal("TilesInfo.csv");
+            FileHandle fileHandle = Gdx.files.internal("TilesInfo.csv"); // TODO: 27.04.2023 wyeliminować wczytywanie pliku
             String text = fileHandle.readString("UTF-8");
             Scanner reader = new Scanner(text);
             while (reader.hasNextLine()) {
@@ -28,18 +27,18 @@ public class TileFactory {
 
     private Tile parseCsvLineToTile(String line) {
         String[] tab = line.split(";");
-        Texture image = new Texture(Gdx.files.internal("tiles/PNG/Base_Game_C2_Tile_" + tab[0] + ".png"));
-        Tile tile = new Tile(0, 0, image);
         String directionRoadString = tab[1];
         String directionCityString = tab[2];
         char[] directionsRoadChar = directionRoadString.toCharArray();
         char[] directionsCityChar = directionCityString.toCharArray();
+        Terrain road = new Terrain(TerrainType.ROAD);
+        Terrain city = new Terrain(TerrainType.CITY);
         for (char direction : directionsRoadChar) {
-            tile.setRoad(direction);
+            road.setSide(direction);
         }
         for (char direction : directionsCityChar) {
-            tile.setCity(direction);
+            city.setSide(direction);
         }
-        return tile;
+        return new Tile(road,city);
     }
 }

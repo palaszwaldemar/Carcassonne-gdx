@@ -4,50 +4,35 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.OrthographicCamera;
+import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.utils.ScreenUtils;
 import com.badlogic.gdx.utils.viewport.ScreenViewport;
+import com.mygdx.carcassonne.server.BoardService;
+import com.mygdx.carcassonne.server.Tile;
 
 import java.awt.event.MouseEvent;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Queue;
 
 public class GameScreen implements Screen {
-    private Carcassonne game;
-    private Stage stage;
-    private OrthographicCamera camera;
-
-
-    //dependencies
-    private final TileFactory tileFactory;
-    private final SpawnValidator spawnValidator;
-
-    //game elements
-    private final List<Tile> tilesBoard = new ArrayList<>();
-    private final Queue<Tile> tilesPile;
+    private final Carcassonne game;
+    private final Stage stage;
+    private final OrthographicCamera camera;
     private final TilePreview tilePreview;
-
-    //ui
     private final EndButton endButton;
+    private final BoardService boardService = new BoardService();
 
     public GameScreen(Carcassonne game) {
         this.game = game;
         camera = new OrthographicCamera();
         camera.setToOrtho(false, GuiParams.WIDTH, GuiParams.HEIGHT);
         stage = new Stage(new ScreenViewport(camera), game.getBatch());
-        tileFactory = new TileFactory();
-        tilesPile = tileFactory.getListOfTile();
-        tilePreview =  new TilePreview(stage);
-        spawnValidator = new SpawnValidator(tilesBoard,tilePreview);
+        tilePreview = new TilePreview(stage);
         endButton = new EndButton();
 
         //biore z fabryki kafelek startowy
-        Tile tile = tilesPile.poll();
-        stage.addActor(tile);
-        tile.setGridX(8);
-        tile.setGridY(4);
-        tilesBoard.add(tile);
+        Tile tile = boardService.setupFirstTile();
+        TileActor tileActor = new TileActor(new Texture(Gdx.files.internal("tiles/PNG/Base_Game_C2_Tile_A.png")), tile);
+        stage.addActor(tileActor);
         drawNextTile();
 
         Gdx.input.setInputProcessor(stage);
@@ -113,7 +98,7 @@ public class GameScreen implements Screen {
         int x = Cords.xToCords(pixelX);
         int y = Cords.yToCords(pixelY);
         if (spawnValidator.canSpawnTile(x, y)) {
-            spawnTile(x,y);
+            spawnTile(x, y);
             endButton.enable();
         }
     }
@@ -124,10 +109,10 @@ public class GameScreen implements Screen {
 
 
     private void spawnTile(int x, int y) {
-        Tile newTile = tilePreview.getTile();
-        newTile.setGridX(x);
-        newTile.setGridY(y);
-        tilesBoard.add(newTile);
+        TileActor newTileActor = tilePreview.getTile();
+        newTileActor.setGridX(x);
+        newTileActor.setGridY(y);
+        tilesBoard.add(newTileActor);
     }
 }
 // TODO: 07.04.2023 //https://github.com/dixu11/deckard-thief/blob/master/core/src/com/deckard/client/core/CombatScreen.java
@@ -137,5 +122,5 @@ public class GameScreen implements Screen {
 //również aktywuje przycisk
 //również blokuje stawianie klocka
 //przycisk zatwierdzenia - naciśnięcie pokazuje podgląd kolejnego
-//przyleganie dróg - zezwala lub nie na położenie tile
+//przyleganie dróg - zezwala lub nie na położenie tileActor
 

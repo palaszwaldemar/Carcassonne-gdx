@@ -6,26 +6,25 @@ import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.utils.DragListener;
+import com.mygdx.carcassonne.server.Tile;
 
-import java.util.Arrays;
-
-public class Tile extends Actor {
-
-    //gui
-    private int gridX;
-    private int gridY;
+public class TileActor extends Actor {
+    private final Tile tile;
     private final Texture image;
 
-    //logic
-    private final boolean[] road = new boolean[4];
-    private final boolean[] city = new boolean[4];
-
-    public Tile(int gridX, int gridY, Texture image) {
-        this.gridX = gridX;
-        this.gridY = gridY;
+    public TileActor(Texture image, Tile tile) {
+        this.tile = tile;
         this.image = image;
-        setBounds(Cords.xToPixels(gridX), Cords.yToPixels(gridY), GuiParams.SIZE, GuiParams.SIZE);
+        setBounds(Cords.xToPixels(tile.getX()), Cords.yToPixels(tile.getY()), GuiParams.SIZE, GuiParams.SIZE);
         addListener(new DragTileListener());
+    }
+
+    public void setGridX() {
+        setX(Cords.xToPixels(tile.getX()));
+    }
+
+    public void setGridY() {
+        setY(Cords.yToPixels(tile.getY()));
     }
 
     public void draw(Batch batch, float parentAlpha) {
@@ -40,60 +39,6 @@ public class Tile extends Actor {
 
     // TODO: 06.04.2023 pamiętać o przerobieniu xToPixels
 
-
-    public void setGridX(int gridX) {
-        this.gridX = gridX;
-        setX(Cords.xToPixels(gridX));
-    }
-
-    public void setGridY(int gridY) {
-        this.gridY = gridY;
-        setY(Cords.yToPixels(gridY));
-    }
-
-    public void setRoad(char side) {
-        switch (side) {
-            case 'N' -> road[0] = true;
-            case 'E' -> road[1] = true;
-            case 'S' -> road[2] = true;
-            case 'W' -> road[3] = true;
-        }
-    }
-
-    public void setCity(char side) {
-        switch (side) {
-            case 'N' -> city[0] = true;
-            case 'E' -> city[1] = true;
-            case 'S' -> city[2] = true;
-            case 'W' -> city[3] = true;
-        }
-    }
-
-    public boolean getRoad(int i) {
-        return road[i];
-    }
-
-    public boolean getCity(int i) {
-        return city[i];
-    }
-
-    public int getGridX() {
-        return gridX;
-    }
-
-    public int getGridY() {
-        return gridY;
-    }
-
-    @Override
-    public String toString() {
-        return "carcassone.Tile{" +
-                "x=" + gridX +
-                ", y=" + gridY +
-                ", road=" + Arrays.toString(road) +
-                '}';
-
-    }
 
     class DragTileListener extends DragListener {
         private float deltaX;
