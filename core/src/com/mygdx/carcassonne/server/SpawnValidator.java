@@ -1,4 +1,4 @@
-package com.mygdx.carcassonne;
+package com.mygdx.carcassonne.server;
 
 import java.util.List;
 

@@ -1,4 +1,4 @@
-package com.mygdx.carcassonne;
+package com.mygdx.carcassonne.client;
 
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;

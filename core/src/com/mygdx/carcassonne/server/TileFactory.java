@@ -1,4 +1,4 @@
-package com.mygdx.carcassonne;
+package com.mygdx.carcassonne.server;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.files.FileHandle;

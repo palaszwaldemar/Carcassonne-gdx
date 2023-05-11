@@ -1,4 +1,4 @@
-package com.mygdx.carcassonne;
+package com.mygdx.carcassonne.client;
 
 public class Cords {
 

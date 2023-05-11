@@ -1,4 +1,4 @@
-package com.mygdx.carcassonne;
+package com.mygdx.carcassonne.client;
 
 public class GuiParams {
     public static final int WIDTH = 1800;

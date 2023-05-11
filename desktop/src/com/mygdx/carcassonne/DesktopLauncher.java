@@ -2,6 +2,8 @@ package com.mygdx.carcassonne;
 
 import com.badlogic.gdx.backends.lwjgl3.Lwjgl3Application;
 import com.badlogic.gdx.backends.lwjgl3.Lwjgl3ApplicationConfiguration;
+import com.mygdx.carcassonne.client.Carcassonne;
+import com.mygdx.carcassonne.client.GuiParams;
 
 public class DesktopLauncher {
 	public static void main (String[] arg) {
