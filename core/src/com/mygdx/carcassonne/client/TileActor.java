@@ -1,5 +1,6 @@
 package com.mygdx.carcassonne.client;
 
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Batch;
@@ -12,10 +13,10 @@ public class TileActor extends Actor {
     private final Tile tile;
     private final Texture image;
 
-    public TileActor(Texture image, Tile tile) {
+    public TileActor(Tile tile) {
         this.tile = tile;
-        this.image = image;
-        setBounds(Cords.xToPixels(tile.getX()), Cords.yToPixels(tile.getY()), GuiParams.SIZE, GuiParams.SIZE);
+        this.image = new Texture(Gdx.files.internal("tiles/PNG/Base_Game_C2_Tile_" + tile.getName() + ".png"));
+        setBounds(0, 0, GuiParams.SIZE, GuiParams.SIZE);
         addListener(new DragTileListener());
     }
 
@@ -51,11 +52,21 @@ public class TileActor extends Actor {
             return super.touchDown(event, x, y, pointer, button);
         }
 
+
         @Override
         public void drag(InputEvent event, float x, float y, int pointer) {
             float newX = getX() + x - deltaX;
             float newY = getY() + y - deltaY;
             setPosition(newX, newY);
+        }
+
+        @Override
+        public void touchUp(InputEvent event, float x, float y, int pointer, int button) {
+            super.touchUp(event, x, y, pointer, button);
+            setX(Cords.xToCords((int) getX()));
+            setY(Cords.yToCords((int) getY()));
+            System.out.println(getX());
+            System.out.println(getY());
         }
     }
 }

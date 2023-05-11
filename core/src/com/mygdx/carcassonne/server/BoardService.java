@@ -3,7 +3,7 @@ package com.mygdx.carcassonne.server;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Queue;
-
+//fasada całego backendu
 public class BoardService {
     private final List<Tile> tilesBoard = new ArrayList<>();
     private final Queue<Tile> tilesPile;
@@ -20,7 +20,8 @@ public class BoardService {
         return tilesPile.poll();
     }
 
-    public Tile setupFirstTile() {
+    //wszystkie tile zaczną od prieview i dopiero beda ladowac na planszy
+    public Tile setupFirstTile() { //todo prawdopodobnie bedzie zmienione i ujednolicone z ustawianiem wsyzstkich innych tile
         Tile tile = nextTile();
         tile.setX(4);
         tile.setY(8);
@@ -28,4 +29,6 @@ public class BoardService {
         tile.setLocked(true);
         return tile;
     }
+
+
 }

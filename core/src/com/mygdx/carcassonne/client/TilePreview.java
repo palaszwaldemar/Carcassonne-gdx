@@ -1,33 +1,35 @@
 package com.mygdx.carcassonne.client;
 
-import com.badlogic.gdx.scenes.scene2d.Stage;
-import com.mygdx.carcassonne.client.TileActor;
+import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.InputProcessor;
+import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.scenes.scene2d.Group;
+import com.badlogic.gdx.scenes.scene2d.ui.Image;
+import com.mygdx.carcassonne.server.BoardService;
 
-import java.awt.*;
+public class TilePreview extends Group {
+    private BoardService boardService;
+    private Texture texture = new Texture(Gdx.files.internal("shadow.png"));
+    private Image image = new Image(texture);
 
-public class TilePreview {
-    private final Stage stage;
-    private TileActor tileActor;
 
-    public TilePreview(Stage stage) {
-        this.stage = stage;
+    public TilePreview(BoardService boardService) {
+        this.boardService = boardService;
+        addActor(image);
+        spawnFirstTile();
     }
 
-    public void addTile(TileActor tileActor) {
-        this.tileActor = tileActor;
-        stage.addActor(tileActor);
-        tileActor.setGridX(0);
-        tileActor.setGridY(8);
+    private void spawnFirstTile() {
+        TileActor tileActor = new TileActor(boardService.setupFirstTile());
+        addActor(tileActor);
+        //odpalenie automatu który to ustawi?
     }
 
-    void render(Graphics g) {
-        int pixelX = 10;
-        int pixelY = 10;
-//        tileActor.render(g, pixelX, pixelY);
-        g.drawString("ACTUAL TILE", pixelX + 15, pixelY + 115);
-    }
-
-    public TileActor getTile() {
-        return tileActor;
+    void spawnNextTile() { // tą wywołamy po zakończeniu tury poprzedniego gracza
+        TileActor tileActor = new TileActor(boardService.nextTile());
+        addActor(tileActor);
     }
 }
+
+
+// CHECK: 11.05.2023 czy tilePrewiec nie powinien mieć swojego odpowiednika w backend? Gdzie np. podamy w jakim miejscu ma się pojawić na planszy?

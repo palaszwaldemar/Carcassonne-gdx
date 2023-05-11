@@ -23,24 +23,18 @@ public class GameScreen implements Screen {
 
     public GameScreen(Carcassonne game) {
         this.game = game;
+
         camera = new OrthographicCamera();
         camera.setToOrtho(false, GuiParams.WIDTH, GuiParams.HEIGHT);
-        stage = new Stage(new ScreenViewport(camera), game.getBatch());
-        tilePreview = new TilePreview(stage);
+
         endButton = new EndButton();
 
-        //biore z fabryki kafelek startowy
-        Tile tile = boardService.setupFirstTile();
-        TileActor tileActor = new TileActor(new Texture(Gdx.files.internal("tiles/PNG/Base_Game_C2_Tile_A.png")), tile);
-        stage.addActor(tileActor);
-        drawNextTile();
-
+        stage = new Stage(new ScreenViewport(camera), game.getBatch());
         Gdx.input.setInputProcessor(stage);
-    }
 
-    @Override
-    public void show() {
-
+        tilePreview = new TilePreview(boardService);
+        tilePreview.setPosition(10, GuiParams.HEIGHT - GuiParams.SIZE - 10); // CHECK: 11.05.2023 zmieniłem ustawienie pozycji tilePreview
+        stage.addActor(tilePreview);
     }
 
     @Override
@@ -50,6 +44,11 @@ public class GameScreen implements Screen {
         game.getBatch().setProjectionMatrix(camera.combined);
         stage.act(delta);
         stage.draw();
+    }
+
+    @Override
+    public void show() {
+
     }
 
     @Override
@@ -77,50 +76,16 @@ public class GameScreen implements Screen {
 
     }
 
-    public void mousePressed(MouseEvent e) {
-        int pixelX = e.getX();
-        int pixelY = e.getY();
-        boolean clicked = handleEndButtonClick(pixelX, pixelY);
-        if (clicked) return;
-        handleBoardClick(pixelX, pixelY);
-    }
 
-    private boolean handleEndButtonClick(int pixelX, int pixelY) {
+// sterowanie przyciskiem, kiedy aktywny kiedy nie
+/*    private boolean handleEndButtonClick(int pixelX, int pixelY) {
         if (!endButton.isDisable() && endButton.isClicked(pixelX, pixelY)) {
             drawNextTile();
             endButton.disable();
             return true;
         }
         return false;
-    }
+    }*/
 
-    private void handleBoardClick(int pixelX, int pixelY) {
-        int x = Cords.xToCords(pixelX);
-        int y = Cords.yToCords(pixelY);
-        if (spawnValidator.canSpawnTile(x, y)) {
-            spawnTile(x, y);
-            endButton.enable();
-        }
-    }
-
-    private void drawNextTile() {
-        tilePreview.addTile(tilesPile.poll()); // TODO: 16.02.2023 wysypie się jak się skończą
-    }
-
-
-    private void spawnTile(int x, int y) {
-        TileActor newTileActor = tilePreview.getTile();
-        newTileActor.setGridX(x);
-        newTileActor.setGridY(y);
-        tilesBoard.add(newTileActor);
-    }
 }
-// TODO: 07.04.2023 //https://github.com/dixu11/deckard-thief/blob/master/core/src/com/deckard/client/core/CombatScreen.java
-
-//podgląd aktualnego
-//postawienie aktualnego chowa podgląd
-//również aktywuje przycisk
-//również blokuje stawianie klocka
-//przycisk zatwierdzenia - naciśnięcie pokazuje podgląd kolejnego
-//przyleganie dróg - zezwala lub nie na położenie tileActor
 

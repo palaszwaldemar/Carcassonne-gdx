@@ -29,6 +29,7 @@ public class TileFactory {
         String[] tab = line.split(";");
         String directionRoadString = tab[1];
         String directionCityString = tab[2];
+        String name = tab[0];
         char[] directionsRoadChar = directionRoadString.toCharArray();
         char[] directionsCityChar = directionCityString.toCharArray();
         Terrain road = new Terrain(TerrainType.ROAD);
@@ -39,6 +40,6 @@ public class TileFactory {
         for (char direction : directionsCityChar) {
             city.setSide(direction);
         }
-        return new Tile(road,city);
+        return new Tile(road,city, name);
     }
 }

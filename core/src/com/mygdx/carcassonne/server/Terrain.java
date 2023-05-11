@@ -6,6 +6,7 @@ public class Terrain {
 
     public Terrain(TerrainType type) {
         this.type = type;
+        sides = new boolean[4];
     }
 
     public void setSide(char side) {

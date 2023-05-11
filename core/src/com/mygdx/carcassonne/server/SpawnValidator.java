@@ -10,7 +10,7 @@ public class SpawnValidator {
         this.tilesBoard = tilesBoard;
     }
 
-   public boolean canSpawnTile(Tile tile) {
+    public boolean canSpawnTile(Tile tile) {
         return isConnectedTile(tile) &&
                 placeIsEmpty(tile) &&
                 isMatchingTile(tile);

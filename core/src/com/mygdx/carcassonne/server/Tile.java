@@ -6,10 +6,12 @@ public class Tile {
     private boolean locked;
     private final Terrain road;
     private final Terrain city;
+    private final String name;
 
-    public Tile(Terrain road, Terrain city) {
+    public Tile(Terrain road, Terrain city, String name) {
         this.road = road;
         this.city = city;
+        this.name = name;
     }
 
     public int getX() {
@@ -34,6 +36,10 @@ public class Tile {
 
     public Terrain getCity() {
         return city;
+    }
+
+    public String getName() {
+        return name;
     }
 
     public Terrain getTerrain(TerrainType terrainType) {
