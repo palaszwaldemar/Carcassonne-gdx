@@ -1,7 +1,6 @@
 package com.mygdx.carcassonne.client;
 
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.InputProcessor;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.scenes.scene2d.Group;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
@@ -30,6 +29,3 @@ public class TilePreview extends Group {
         addActor(tileActor);
     }
 }
-
-
-// CHECK: 11.05.2023 czy tilePrewiec nie powinien mieć swojego odpowiednika w backend? Gdzie np. podamy w jakim miejscu ma się pojawić na planszy?

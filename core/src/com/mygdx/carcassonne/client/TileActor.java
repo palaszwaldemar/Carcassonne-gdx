@@ -63,10 +63,6 @@ public class TileActor extends Actor {
         @Override
         public void touchUp(InputEvent event, float x, float y, int pointer, int button) {
             super.touchUp(event, x, y, pointer, button);
-            setX(Cords.xToCords((int) getX()));
-            setY(Cords.yToCords((int) getY()));
-            System.out.println(getX());
-            System.out.println(getY());
         }
     }
 }
