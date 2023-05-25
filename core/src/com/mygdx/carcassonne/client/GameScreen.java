@@ -4,14 +4,10 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.OrthographicCamera;
-import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.utils.ScreenUtils;
 import com.badlogic.gdx.utils.viewport.ScreenViewport;
 import com.mygdx.carcassonne.server.BoardService;
-import com.mygdx.carcassonne.server.Tile;
-
-import java.awt.event.MouseEvent;
 
 public class GameScreen implements Screen {
     private final Carcassonne game;
@@ -33,7 +29,8 @@ public class GameScreen implements Screen {
         Gdx.input.setInputProcessor(stage);
 
         tilePreview = new TilePreview(boardService);
-        tilePreview.setPosition(10, GuiParams.HEIGHT - GuiParams.SIZE - 10); // CHECK: 11.05.2023 zmieniłem ustawienie pozycji tilePreview
+        int margin = 10;
+        tilePreview.setPosition(margin, GuiParams.HEIGHT - GuiParams.TILE_SIZE - margin);
         stage.addActor(tilePreview);
     }
 

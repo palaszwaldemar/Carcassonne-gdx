@@ -16,7 +16,7 @@ public class TileActor extends Actor {
     public TileActor(Tile tile) {
         this.tile = tile;
         this.image = new Texture(Gdx.files.internal("tiles/PNG/Base_Game_C2_Tile_" + tile.getName() + ".png"));
-        setBounds(0, 0, GuiParams.SIZE, GuiParams.SIZE);
+        setBounds(0, 0, GuiParams.TILE_SIZE, GuiParams.TILE_SIZE);
         addListener(new DragTileListener());
     }
 
@@ -46,7 +46,7 @@ public class TileActor extends Actor {
         private float deltaY;
 
         @Override
-        public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {// CHECK : 16.05.2023 skąd metoda wie jaki jest x, y, pointer, button?
+        public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
             deltaX = x;
             deltaY = y;
             return super.touchDown(event, x, y, pointer, button);
@@ -61,11 +61,6 @@ public class TileActor extends Actor {
             int roundedY = Math.round(newY / 100) * 100;
 
             setPosition(roundedX, roundedY);
-        }
-
-        @Override
-        public void touchUp(InputEvent event, float x, float y, int pointer, int button) {
-            super.touchUp(event, x, y, pointer, button); // CHECK : 16.05.2023 czemu zmiana x lub y na nic nie wpływa?
         }
     }
 }
