@@ -56,7 +56,14 @@ public class TileActor extends Actor {
         public void drag(InputEvent event, float x, float y, int pointer) {
             float newX = getX() + x - deltaX;
             float newY = getY() + y - deltaY;
+            setPosition(newX, newY);
+        }
 
+        @Override
+        public void touchUp(InputEvent event, float x, float y, int pointer, int button) {
+            super.touchUp(event, x, y, pointer, button);
+            float newX = getX() + x - deltaX;
+            float newY = getY() + y - deltaY;
             int roundedX = Math.round(newX / 100) * 100; // CHECK : 16.05.2023 czy jestem w stanie wykorzystać tutaj swoją klasę Cords, lub metody setGridX, setGridY
             int roundedY = Math.round(newY / 100) * 100;
 
