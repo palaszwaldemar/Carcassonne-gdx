@@ -125,7 +125,7 @@ public class TileActor extends Actor {
 
         @Override
         public void clicked(InputEvent event, float x, float y) {
-            addAction(Actions.rotateBy(-90f, 1));
+            addAction(Actions.rotateBy(-90f, 0.1F));
             super.clicked(event, x, y);
         }
     }
