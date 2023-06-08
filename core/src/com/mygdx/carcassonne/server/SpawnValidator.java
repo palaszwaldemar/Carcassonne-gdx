@@ -46,12 +46,12 @@ public class SpawnValidator {
     }
 
     private boolean areCorrectlyConnected(Tile tile, TerrainType terrainType) {
-        Terrain tileTerrain = tile.getTerrain(terrainType);
+        Tile.Terrain tileTerrain = tile.getTerrain(terrainType);
         for (Tile boardTile : tilesBoard) {
             if (boardTile.equals(tile)) {
                 continue;
             }
-            Terrain boardTileTerrain = boardTile.getTerrain(terrainType);
+            Tile.Terrain boardTileTerrain = boardTile.getTerrain(terrainType);
             if (boardTile.getX() == tile.getX() && boardTile.getY() == tile.getY() + 1) {
                 if (boardTileTerrain.getSide(0) != tileTerrain.getSide(2)) {
                     return false;

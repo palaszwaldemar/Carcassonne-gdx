@@ -8,10 +8,11 @@ public class Tile {
     private final Terrain city;
     private final String name;
 
-    public Tile(Terrain road, Terrain city, String name) {
-        this.road = road;
-        this.city = city;
+    public Tile(char[] directionsRoadChar, char[] directionsCityChar, String name) {
         this.name = name;
+
+        road = new Terrain(TerrainType.ROAD, directionsRoadChar);
+        city = new Terrain(TerrainType.CITY, directionsCityChar);
     }
 
     public int getX() {
@@ -51,5 +52,32 @@ public class Tile {
 
     public void setLocked(boolean locked) {
         this.locked = locked;
+    }
+
+    public class Terrain {
+        private final TerrainType type;
+        private boolean[] sides;
+
+        public Terrain(TerrainType type, char[] charSides) {
+            this.type = type;
+            sides = new boolean[4];
+
+            for (char direction : charSides) {
+                setSide(direction);
+            }
+        }
+
+        private void setSide(char side) {
+            switch (side) {
+                case 'N' -> sides[0] = true;
+                case 'E' -> sides[1] = true;
+                case 'S' -> sides[2] = true;
+                case 'W' -> sides[3] = true;
+            }
+        }
+
+        public boolean getSide(int i){
+            return sides[i];
+        }
     }
 }

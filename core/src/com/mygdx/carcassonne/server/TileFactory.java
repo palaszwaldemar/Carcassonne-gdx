@@ -32,14 +32,6 @@ public class TileFactory {
         String name = tab[0];
         char[] directionsRoadChar = directionRoadString.toCharArray();
         char[] directionsCityChar = directionCityString.toCharArray();
-        Terrain road = new Terrain(TerrainType.ROAD);
-        Terrain city = new Terrain(TerrainType.CITY);
-        for (char direction : directionsRoadChar) {
-            road.setSide(direction);
-        }
-        for (char direction : directionsCityChar) {
-            city.setSide(direction);
-        }
-        return new Tile(road,city, name);
+        return new Tile(directionsRoadChar,directionsCityChar, name);
     }
 }
