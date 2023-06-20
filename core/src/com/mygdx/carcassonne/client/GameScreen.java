@@ -7,7 +7,6 @@ import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.utils.ScreenUtils;
 import com.badlogic.gdx.utils.viewport.ScreenViewport;
-import com.mygdx.carcassonne.server.BoardService;
 
 public class GameScreen implements Screen {
     private final Carcassonne game;
@@ -33,6 +32,10 @@ public class GameScreen implements Screen {
         int margin = 10;
         tilePreview.setPosition(margin, GuiParams.HEIGHT - GuiParams.TILE_SIZE - margin);
         stage.addActor(tilePreview);
+        stage.addActor(endButton);
+
+        //elementy rozgrywki
+        tilePreview.spawnNextTile();
     }
 
     @Override

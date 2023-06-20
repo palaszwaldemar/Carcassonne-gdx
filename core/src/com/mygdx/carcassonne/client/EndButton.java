@@ -1,40 +1,51 @@
 package com.mygdx.carcassonne.client;
 
-import java.awt.*;
+import com.badlogic.gdx.Input;
+import com.badlogic.gdx.graphics.Color;
+import com.badlogic.gdx.graphics.g2d.Batch;
+import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
+import com.badlogic.gdx.scenes.scene2d.Actor;
+import com.badlogic.gdx.scenes.scene2d.InputEvent;
+import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
+import com.mygdx.carcassonne.server.BoardService;
 
-public class EndButton {
-//todo refactor for resize
-    private final int x = 1690;
-    private final int y = 10;
-    private final static int WIDTH = 100;
-    private final static int HEIGHT = 50;
-    private boolean disable = true;
+public class EndButton extends Actor {
+    private ShapeRenderer renderer;
 
-    public boolean isDisable() {
-        return disable;
+    public EndButton() {
+        renderer = new ShapeRenderer();
+        setBounds(GuiParams.WIDTH - GuiParams.TILE_SIZE - 10,  GuiParams.HEIGHT - GuiParams.TILE_SIZE - 10, GuiParams.TILE_SIZE, GuiParams.TILE_SIZE);
+        addListener(new Click());
     }
 
-    void render(Graphics g) {
-        if (disable) {
-            g.setColor(Color.GRAY);
-        } else {
-            g.setColor(Color.GRAY.brighter());
+    @Override
+    public void draw(Batch batch, float parentAlpha) {
+        super.draw(batch, parentAlpha);
+
+
+
+        batch.end();  // koniec batch'a, bo ShapeRenderer zaczyna nową serię rysowania
+
+        renderer.begin(ShapeRenderer.ShapeType.Filled);
+        renderer.setColor(Color.RED);
+        renderer.rect(getX(), getY(), getWidth(), getHeight());
+        renderer.end();
+
+
+        batch.begin();  // zaczynamy batch na nowo, żeby inne aktory mogły się rysować
+
+    }
+
+    class Click extends ClickListener {
+        public Click() {
+            super(Input.Buttons.LEFT);
         }
-        g.fillRect(x, y, WIDTH, HEIGHT);
-        g.setColor(Color.BLACK);
-        g.drawRect(x, y, WIDTH, HEIGHT);
-        g.drawString("END TURN", x + 20, y + 30);
-    }
 
-    public boolean isClicked(int pixelX, int pixelY) {
-        return (pixelX >= x && pixelX <= x + WIDTH) && (pixelY >= y && pixelY <= y + HEIGHT);
-    }
+        @Override
+        public void clicked(InputEvent event, float x, float y) {
+            System.out.println("---");
 
-    public void disable() {
-        disable = true;
-    }
-
-    public void enable() {
-        disable = false;
+            super.clicked(event, x, y);
+        }
     }
 }

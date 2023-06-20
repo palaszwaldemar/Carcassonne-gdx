@@ -29,6 +29,4 @@ public class BoardService {
         tile.setLocked(true);
         return tile;
     }
-
-
 }
