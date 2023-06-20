@@ -7,13 +7,14 @@ import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.mygdx.carcassonne.server.BoardService;
 
 public class TilePreview extends Group {
-    private BoardService boardService;
-    private Texture texture = new Texture(Gdx.files.internal("shadow.png"));
+    private Controller controller;
+    private Texture texture = new Texture(Gdx.files.internal("blocker.png"));
     private Image image = new Image(texture);
+    // TODO: 08.06.2023 dodać Controller, usunąć boardservice
 
 
-    public TilePreview(BoardService boardService) {
-        this.boardService = boardService;
+    public TilePreview(Controller controller) {
+        this.controller = controller;
         addActor(image);
         spawnFirstTile();
     }
@@ -25,7 +26,7 @@ public class TilePreview extends Group {
     }
 
     void spawnNextTile() { // tą wywołamy po zakończeniu tury poprzedniego gracza
-        TileActor tileActor = new TileActor(boardService.nextTile());
+        TileActor tileActor = new TileActor(controller.createNextTile());
         addActor(tileActor);
     }
 }

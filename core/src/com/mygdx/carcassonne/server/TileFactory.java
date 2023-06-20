@@ -21,7 +21,6 @@ public class TileFactory {
                 tiles.add(tile);
             }
         Collections.shuffle(tiles);
-        System.out.println(tiles);
         return tiles;
     }
 
