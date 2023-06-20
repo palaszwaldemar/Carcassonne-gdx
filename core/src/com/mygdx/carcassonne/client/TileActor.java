@@ -47,75 +47,48 @@ public class TileActor extends Actor {
 
     // TODO: 06.04.2023 pamiętać o przerobieniu xToPixels
 
-
-   /* class DragTileListener extends DragListener {
-        private float deltaX;
-        private float deltaY;
-
-        @Override
-        public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) { // TODO: 01.06.2023 powiększenie/pomniejszenie okna zmienia położenie chwytu kafelka
-            deltaX = x;
-            deltaY = y;
-            return super.touchDown(event, x, y, pointer, button);
-        }
-
-        @Override
-        public void drag(InputEvent event, float x, float y, int pointer) {
-            float newX = getX() + x - deltaX;
-            float newY = getY() + y - deltaY;
-            setPosition(newX, newY);
-        }
-
-        @Override
-        public void touchUp(InputEvent event, float x, float y, int pointer, int button) {
-            super.touchUp(event, x, y, pointer, button);
-            float newX = getX() + x - deltaX;
-            float newY = getY() + y - deltaY;
-            int roundedX = Math.round(newX / GuiParams.TILE_SIZE) * GuiParams.TILE_SIZE; // CHECK : 16.05.2023 czy jestem w stanie wykorzystać tutaj swoją klasę Cords, lub metody setGridX, setGridY
-            int roundedY = Math.round(newY / GuiParams.TILE_SIZE) * GuiParams.TILE_SIZE;
-
-            setPosition(roundedX, roundedY);
-        }
-    }*/
-
-    class DragTileListener extends DragListener {
+     class DragTileListener extends DragListener {
         private Vector2 lastTouch = new Vector2();
+        private Vector2 delta;
 
         @Override
         public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
-            lastTouch.set(x, y);
-            lastTouch = event.getTarget().localToParentCoordinates(lastTouch);
+          lastTouch  = convertToParentVector(x,y);
             return super.touchDown(event, x, y, pointer, button);
         }
 
         @Override
         public void drag(InputEvent event, float x, float y, int pointer) {
-            Actor tile = event.getTarget();
-
-            Vector2 newTouch = new Vector2(x, y);
-            newTouch = tile.localToParentCoordinates(newTouch);
-            Vector2 delta = newTouch.cpy().sub(lastTouch);
-
-            tile.moveBy(delta.x, delta.y);
-
-            lastTouch = newTouch;
+            dragToPosition(x, y);
         }
 
         @Override
         public void touchUp(InputEvent event, float x, float y, int pointer, int button) {
             super.touchUp(event, x, y, pointer, button);
-            Actor tile = event.getTarget();
-
-            Vector2 newTouch = new Vector2(x, y);
-            newTouch = tile.localToParentCoordinates(newTouch);
-            Vector2 delta = newTouch.cpy().sub(lastTouch);
+            dragToPosition(x, y);
             float newX = getX() + x - delta.x;
             float newY = getY() + y - delta.y;
-            int roundedX = Math.round(newX / GuiParams.TILE_SIZE) * GuiParams.TILE_SIZE; // CHECK : 16.05.2023 czy jestem w stanie wykorzystać tutaj swoją klasę Cords, lub metody setGridX, setGridY
-            int roundedY = Math.round(newY / GuiParams.TILE_SIZE) * GuiParams.TILE_SIZE;
+            int roundedX = (int) (Math.floor(newX / GuiParams.TILE_SIZE) * GuiParams.TILE_SIZE);
+            int roundedY = (int) (Math.floor(newY / GuiParams.TILE_SIZE) * GuiParams.TILE_SIZE);
 
             setPosition(roundedX, roundedY);
         }
+
+        private void dragToPosition(float x, float y) {
+            Vector2 newTouch = convertToParentVector(x,y);
+            delta = newTouch.cpy().sub(lastTouch);
+            lastTouch = newTouch;
+            TileActor.this.moveBy(delta.x, delta.y);
+        }
+
+
+        private Vector2 convertToParentVector(float x, float y) {
+            Vector2 vector = new Vector2(x, y);
+            vector = TileActor.this.localToParentCoordinates(vector);
+            return vector;
+        }
+
+
     }
 
     class RightClick extends ClickListener {
