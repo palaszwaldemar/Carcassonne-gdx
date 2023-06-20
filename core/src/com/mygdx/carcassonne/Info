@@ -1,31 +1,7 @@
-1. na zlecenie TilePreview pobierany jest pierwszy kafelek
-2. zostaje automatycznie wysłany na środek
-3. zostaje zespawnowany kolejny kafelek
-4. można ustawić go
-
-
-
-
-przeciągnięcie w wybrane miejsce aktora
-możliwość rotacji w trakcie przeciągania (np. spacja, drugi przycisk myszy)
-    - wykrycie naciśnięcia przycisku
-    - powoduje animację obrotu o 90 -> wizualnie obróci
-    - przestawia na tile rotacje na 1 większą -> wpłynie na ocenę validatora (powiązane z dynamiczną interpretacją w getSide)
-próba położenia powoduje sprawdzenie poprawności pozycji
-jeśli pozycja poprawna tile zostaje połączony i przyłączony do planszy (centrowanie na siatce)
-jeśli niepoprawna to animacja powrotu kafla z powrotem na pozycje preview
-
-
-
-- MVC, Model View Controller
-- wzorzec Mediator
-
-
-
 Położenie kafelka na środku:
-0. Wykorzystać komunikację przez Controller w TilePreview +
-1. Sygnał do stworzenia kafelka
-2. Stworzenie kafelka - Tile
-3. Przygotowanie TileAcotr na podstawie Tile
-4. Przygotownie grupy elementów TileActor - BoardGroup
-5. Umieszczenie w tej grupie
+1. Wykorzystać komunikację przez Controller w TilePreview +
+2. Sygnał do stworzenia kafelka
+3. Stworzenie kafelka - Tile
+4. Przygotowanie TileAcotr na podstawie Tile
+5. Przygotownie grupy elementów TileActor - BoardGroup
+6. Umieszczenie w tej grupie
