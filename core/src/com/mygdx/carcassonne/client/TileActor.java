@@ -47,13 +47,13 @@ public class TileActor extends Actor {
 
     // TODO: 06.04.2023 pamiętać o przerobieniu xToPixels
 
-     class DragTileListener extends DragListener {
+    class DragTileListener extends DragListener {
         private Vector2 lastTouch = new Vector2();
         private Vector2 delta;
 
         @Override
         public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
-          lastTouch  = convertToParentVector(x,y);
+            lastTouch = convertToParentVector(x, y);
             return super.touchDown(event, x, y, pointer, button);
         }
 
@@ -75,19 +75,17 @@ public class TileActor extends Actor {
         }
 
         private void dragToPosition(float x, float y) {
-            Vector2 newTouch = convertToParentVector(x,y);
+            Vector2 newTouch = convertToParentVector(x, y);
             delta = newTouch.cpy().sub(lastTouch);
             lastTouch = newTouch;
             TileActor.this.moveBy(delta.x, delta.y);
         }
-
 
         private Vector2 convertToParentVector(float x, float y) {
             Vector2 vector = new Vector2(x, y);
             vector = TileActor.this.localToParentCoordinates(vector);
             return vector;
         }
-
 
     }
 

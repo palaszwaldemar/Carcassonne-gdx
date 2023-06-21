@@ -3,6 +3,7 @@ package com.mygdx.carcassonne.server;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Queue;
+
 //fasada całego backendu
 public class BoardService {
     private final List<Tile> tilesBoard = new ArrayList<>();

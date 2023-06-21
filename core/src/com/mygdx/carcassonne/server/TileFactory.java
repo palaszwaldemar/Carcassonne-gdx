@@ -12,14 +12,14 @@ public class TileFactory {
 
     Queue<Tile> getListOfTile() {
         LinkedList<Tile> tiles = new LinkedList<>();
-            FileHandle fileHandle = Gdx.files.internal("TilesInfo.csv"); // TODO: 27.04.2023 wyeliminować wczytywanie pliku
-            String text = fileHandle.readString("UTF-8");
-            Scanner reader = new Scanner(text);
-            while (reader.hasNextLine()) {
-                String line = reader.nextLine();
-                Tile tile = parseCsvLineToTile(line);
-                tiles.add(tile);
-            }
+        FileHandle fileHandle = Gdx.files.internal("TilesInfo.csv"); // TODO: 27.04.2023 wyeliminować wczytywanie pliku
+        String text = fileHandle.readString("UTF-8");
+        Scanner reader = new Scanner(text);
+        while (reader.hasNextLine()) {
+            String line = reader.nextLine();
+            Tile tile = parseCsvLineToTile(line);
+            tiles.add(tile);
+        }
         Collections.shuffle(tiles);
         return tiles;
     }
@@ -31,6 +31,6 @@ public class TileFactory {
         String name = tab[0];
         char[] directionsRoadChar = directionRoadString.toCharArray();
         char[] directionsCityChar = directionCityString.toCharArray();
-        return new Tile(directionsRoadChar,directionsCityChar, name);
+        return new Tile(directionsRoadChar, directionsCityChar, name);
     }
 }

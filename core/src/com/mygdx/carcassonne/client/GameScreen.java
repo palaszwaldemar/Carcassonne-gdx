@@ -77,7 +77,6 @@ public class GameScreen implements Screen {
 
     }
 
-
 // sterowanie przyciskiem, kiedy aktywny kiedy nie
 /*    private boolean handleEndButtonClick(int pixelX, int pixelY) {
         if (!endButton.isDisable() && endButton.isClicked(pixelX, pixelY)) {

@@ -9,8 +9,6 @@ public class TilePreview extends Group {
     private Controller controller;
     private Texture texture = new Texture(Gdx.files.internal("blocker.png"));
     private Image image = new Image(texture);
-    // TODO: 08.06.2023 dodać Controller, usunąć boardservice
-
 
     public TilePreview(Controller controller) {
         this.controller = controller;

@@ -75,5 +75,4 @@ public class SpawnValidator {
         }
         return true;
     }
-
 }

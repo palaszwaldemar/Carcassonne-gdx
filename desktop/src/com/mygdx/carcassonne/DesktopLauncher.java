@@ -6,11 +6,11 @@ import com.mygdx.carcassonne.client.Carcassonne;
 import com.mygdx.carcassonne.client.GuiParams;
 
 public class DesktopLauncher {
-	public static void main (String[] arg) {
-		Lwjgl3ApplicationConfiguration config = new Lwjgl3ApplicationConfiguration();
-		config.setForegroundFPS(60);
-		config.setTitle("Carcassonne");
-		config.setWindowedMode(GuiParams.WIDTH, GuiParams.HEIGHT);
-		new Lwjgl3Application(new Carcassonne(), config);
-	}
+    public static void main(String[] arg) {
+        Lwjgl3ApplicationConfiguration config = new Lwjgl3ApplicationConfiguration();
+        config.setForegroundFPS(60);
+        config.setTitle("Carcassonne");
+        config.setWindowedMode(GuiParams.WIDTH, GuiParams.HEIGHT);
+        new Lwjgl3Application(new Carcassonne(), config);
+    }
 }

@@ -76,7 +76,7 @@ public class Tile {
             }
         }
 
-        public boolean getSide(int i){
+        public boolean getSide(int i) {
             return sides[i];
         }
     }
