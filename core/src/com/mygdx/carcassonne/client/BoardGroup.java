@@ -9,7 +9,7 @@ public class BoardGroup extends Group {
         this.controller = controller;
     }
 
-    void addFirstTile() { // tą wywołamy po zakończeniu tury poprzedniego gracza
+    void addFirstTile() {
         TileActor tileActor = new TileActor(controller.createFirstTile());
         tileActor.setPosition(800 + GuiParams.MARGIN, 500 - GuiParams.MARGIN);
         addActor(tileActor);
