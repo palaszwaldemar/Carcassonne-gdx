@@ -24,6 +24,12 @@ public class TileFactory {
         return tiles;
     }
 
+    public Tile getFirstTile() {
+        Tile tile = parseCsvLineToTile("D;EW;N;");
+        tile.setLocked(true);
+        return tile;
+    }
+
     private Tile parseCsvLineToTile(String line) {
         String[] tab = line.split(";");
         String directionRoadString = tab[1];

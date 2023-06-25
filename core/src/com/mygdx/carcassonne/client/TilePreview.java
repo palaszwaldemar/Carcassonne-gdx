@@ -13,13 +13,6 @@ public class TilePreview extends Group {
     public TilePreview(Controller controller) {
         this.controller = controller;
         addActor(image);
-        spawnFirstTile();
-    }
-
-    private void spawnFirstTile() {
-        TileActor tileActor = new TileActor(boardService.setupFirstTile());
-        addActor(tileActor);
-        //odpalenie automatu który to ustawi?
     }
 
     void spawnNextTile() { // tą wywołamy po zakończeniu tury poprzedniego gracza

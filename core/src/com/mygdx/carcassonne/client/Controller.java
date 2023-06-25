@@ -11,4 +11,8 @@ public class Controller {
     public Tile createNextTile() {
         return boardService.nextTile();
     }
+
+    Tile createFirstTile() {
+        return boardService.firstTile();
+    }
 }

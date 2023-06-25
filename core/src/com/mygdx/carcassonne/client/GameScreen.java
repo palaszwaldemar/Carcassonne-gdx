@@ -13,6 +13,7 @@ public class GameScreen implements Screen {
     private final Stage stage;
     private final OrthographicCamera camera;
     private final TilePreview tilePreview;
+    private final BoardGroup boardGroup;
     private final EndButton endButton;
 
     public GameScreen(Carcassonne game) {
@@ -28,14 +29,16 @@ public class GameScreen implements Screen {
         stage = new Stage(new ScreenViewport(camera), game.getBatch());
         Gdx.input.setInputProcessor(stage);
 
+        boardGroup = new BoardGroup(controller);
         tilePreview = new TilePreview(controller);
-        int margin = 10;
-        tilePreview.setPosition(margin, GuiParams.HEIGHT - GuiParams.TILE_SIZE - margin);
+        tilePreview.setPosition(GuiParams.MARGIN, GuiParams.HEIGHT - GuiParams.TILE_SIZE - GuiParams.MARGIN);
         stage.addActor(tilePreview);
         stage.addActor(endButton);
+        stage.addActor(boardGroup);
 
         //elementy rozgrywki
         tilePreview.spawnNextTile();
+        boardGroup.addFirstTile();
     }
 
     @Override

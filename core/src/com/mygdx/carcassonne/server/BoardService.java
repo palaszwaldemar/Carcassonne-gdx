@@ -21,6 +21,10 @@ public class BoardService {
         return tilesPile.poll();
     }
 
+    public Tile firstTile() {
+        return tileFactory.getFirstTile();
+    }
+
     //wszystkie tile zaczną od prieview i dopiero beda ladowac na planszy
     public Tile setupFirstTile() { //todo prawdopodobnie bedzie zmienione i ujednolicone z ustawianiem wsyzstkich innych tile
         Tile tile = nextTile();
