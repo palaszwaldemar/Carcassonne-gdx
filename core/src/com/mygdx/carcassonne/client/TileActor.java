@@ -53,25 +53,30 @@ public class TileActor extends Actor {
 
         @Override
         public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
-            lastTouch = convertToParentVector(x, y);
+            if (!tile.isLocked()) {
+                lastTouch = convertToParentVector(x, y);
+            }
             return super.touchDown(event, x, y, pointer, button);
         }
 
         @Override
         public void drag(InputEvent event, float x, float y, int pointer) {
-            dragToPosition(x, y);
+            if (!tile.isLocked()) {
+                dragToPosition(x, y);
+            }
         }
 
         @Override
         public void touchUp(InputEvent event, float x, float y, int pointer, int button) {
-            super.touchUp(event, x, y, pointer, button);
-            dragToPosition(x, y);
-            float newX = getX() + x - delta.x;
-            float newY = getY() + y - delta.y;
-            int roundedX = (int) (Math.floor(newX / GuiParams.TILE_SIZE) * GuiParams.TILE_SIZE);
-            int roundedY = (int) (Math.floor(newY / GuiParams.TILE_SIZE) * GuiParams.TILE_SIZE);
-
-            setPosition(roundedX, roundedY);
+            if (!tile.isLocked()) {
+                super.touchUp(event, x, y, pointer, button);
+                dragToPosition(x, y);
+                float newX = getX() + x - delta.x;
+                float newY = getY() + y - delta.y;
+                int roundedX = (int) (Math.floor(newX / GuiParams.TILE_SIZE) * GuiParams.TILE_SIZE);
+                int roundedY = (int) (Math.floor(newY / GuiParams.TILE_SIZE) * GuiParams.TILE_SIZE);
+                setPosition(roundedX, roundedY);
+            }
         }
 
         private void dragToPosition(float x, float y) {
@@ -96,8 +101,10 @@ public class TileActor extends Actor {
 
         @Override
         public void clicked(InputEvent event, float x, float y) {
-            addAction(Actions.rotateBy(-90f, 0.1F));
-            super.clicked(event, x, y);
+            if (!tile.isLocked()) {
+                addAction(Actions.rotateBy(-90f, 0.1F));
+                super.clicked(event, x, y);
+            }
         }
     }
 }
