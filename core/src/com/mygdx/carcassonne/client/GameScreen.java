@@ -29,12 +29,14 @@ public class GameScreen implements Screen {
         stage = new Stage(new ScreenViewport(camera), game.getBatch());
         Gdx.input.setInputProcessor(stage);
 
-        boardGroup = new BoardGroup(controller);
         tilePreview = new TilePreview(controller);
+        boardGroup = new BoardGroup(controller);
         tilePreview.setPosition(GuiParams.MARGIN, GuiParams.HEIGHT - GuiParams.TILE_SIZE - GuiParams.MARGIN);
         stage.addActor(tilePreview);
         stage.addActor(endButton);
         stage.addActor(boardGroup);
+        boardGroup.setZIndex(0);
+        tilePreview.setZIndex(1);
 
         //elementy rozgrywki
         tilePreview.spawnNextTile();
