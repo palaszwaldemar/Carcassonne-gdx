@@ -7,7 +7,7 @@ public class Cords {
     }
 
     static int yToCords(int y) {
-        return y / 100;
+        return -(y / 100);
     }
 
     static int xToPixels(int x) {
