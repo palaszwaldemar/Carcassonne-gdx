@@ -11,6 +11,9 @@ public class SpawnValidator {
     }
 
     public boolean canSpawnTile(Tile tile) {
+        if (tilesBoard.isEmpty()) {
+            return true;
+        }
         return isConnectedTile(tile) &&
                 placeIsEmpty(tile) &&
                 isMatchingTile(tile);

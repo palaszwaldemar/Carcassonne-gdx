@@ -16,7 +16,7 @@ public class TilePreview extends Group {
     }
 
     void spawnNextTile() { // tą wywołamy po zakończeniu tury poprzedniego gracza
-        TileActor tileActor = new TileActor(controller.createNextTile());
+        TileActor tileActor = new TileActor(controller.createNextTile(), controller);
         addActor(tileActor);
     }
 }

@@ -19,6 +19,8 @@ public class GameScreen implements Screen {
     public GameScreen(Carcassonne game) {
         this.game = game;
         Controller controller = new Controller();
+        tilePreview = new TilePreview(controller);
+        controller.setTilePreview(tilePreview);
 
         //przygotowanie elementów graficznych
         camera = new OrthographicCamera();
@@ -29,7 +31,6 @@ public class GameScreen implements Screen {
         stage = new Stage(new ScreenViewport(camera), game.getBatch());
         Gdx.input.setInputProcessor(stage);
 
-        tilePreview = new TilePreview(controller);
         boardGroup = new BoardGroup(controller);
         tilePreview.setPosition(GuiParams.MARGIN, GuiParams.HEIGHT - GuiParams.TILE_SIZE - GuiParams.MARGIN);
         stage.addActor(tilePreview);
@@ -39,7 +40,6 @@ public class GameScreen implements Screen {
         tilePreview.setZIndex(1);
 
         //elementy rozgrywki
-        tilePreview.spawnNextTile();
         boardGroup.addFirstTile();
     }
 

@@ -35,8 +35,8 @@ public class Tile {
         return y;
     }
 
-    public boolean isLocked() { // CHECK: 25.06.2023 nie rozumiem dlaczego powinienem odwrócić?
-        return locked;
+    public boolean isNotLocked() {
+        return !locked;
     }
 
     public Terrain getRoad() {

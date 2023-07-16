@@ -8,11 +8,18 @@ public class Controller {
     private TilePreview tilePreview;
     private BoardService boardService = new BoardService();
 
+    public void setTilePreview(TilePreview tilePreview) {
+        this.tilePreview = tilePreview;
+    }
+
     public Tile createNextTile() {
         return boardService.nextTile();
     }
 
-    Tile createFirstTile() {
-        return boardService.firstTile();
+    public void placeTile(Tile tile) {
+        boolean correctPlacement = boardService.placeTile(tile);
+        if (correctPlacement) {
+            tilePreview.spawnNextTile();
+        }
     }
 }

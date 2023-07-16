@@ -20,14 +20,10 @@ public class TileFactory {
             Tile tile = parseCsvLineToTile(line);
             tiles.add(tile);
         }
+        Tile tile = tiles.remove();
         Collections.shuffle(tiles);
+        tiles.addFirst(tile);
         return tiles;
-    }
-
-    public Tile getFirstTile() {
-        Tile tile = parseCsvLineToTile("D;EW;N;");
-        tile.setLocked(true);
-        return tile;
     }
 
     private Tile parseCsvLineToTile(String line) {

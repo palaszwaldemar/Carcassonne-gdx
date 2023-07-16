@@ -21,17 +21,12 @@ public class BoardService {
         return tilesPile.poll();
     }
 
-    public Tile firstTile() {
-        return tileFactory.getFirstTile();
-    }
-
-    //wszystkie tile zaczną od prieview i dopiero beda ladowac na planszy
-    public Tile setupFirstTile() { //todo prawdopodobnie bedzie zmienione i ujednolicone z ustawianiem wsyzstkich innych tile
-        Tile tile = nextTile();
-        tile.setX(4);
-        tile.setY(8);
-        tilesBoard.add(tile);
-        tile.setLocked(true);
-        return tile;
+    public boolean placeTile(Tile tile) {
+        if (spawnValidator.canSpawnTile(tile)) {
+            tilesBoard.add(tile);
+            tile.setLocked(true);
+            return true;
+        }
+         return false;
     }
 }

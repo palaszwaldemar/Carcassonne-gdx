@@ -1,6 +1,7 @@
 package com.mygdx.carcassonne.client;
 
 import com.badlogic.gdx.scenes.scene2d.Group;
+import com.mygdx.carcassonne.server.Tile;
 
 public class BoardGroup extends Group {
     private final Controller controller;
@@ -9,9 +10,11 @@ public class BoardGroup extends Group {
         this.controller = controller;
     }
 
-    void addFirstTile() {
-        TileActor tileActor = new TileActor(controller.createFirstTile());
-        tileActor.setPosition(800 + GuiParams.MARGIN, 500 - GuiParams.MARGIN);
+    void addFirstTile() {// CHECK: 16.07.2023 nie trzeba zmenić nazwy metody?
+        Tile tile = controller.createNextTile();
+        TileActor tileActor = new TileActor(tile, controller);
+        tileActor.setGridPosition(8, 4);
         addActor(tileActor);
+        controller.placeTile(tile);
     }
 }
