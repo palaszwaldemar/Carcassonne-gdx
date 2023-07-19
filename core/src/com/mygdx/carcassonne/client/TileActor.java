@@ -38,8 +38,8 @@ public class TileActor extends Actor {
     }
 
     public void setGridPosition(int x, int y) {
-        setX(Cords.xToPixels(x) + GuiParams.MARGIN);
-        setY(Cords.yToPixels(y) - GuiParams.MARGIN);
+        setX(Cords.xToPixels(x));
+        setY(Cords.yToPixels(y));
         tile.setX(x);
         tile.setY(y);
     }
