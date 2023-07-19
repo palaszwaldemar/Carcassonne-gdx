@@ -36,10 +36,6 @@ public class GameScreen implements Screen {
         stage.addActor(endButton);
         stage.addActor(boardGroup);
         stage.addActor(tilePreview);
-        stage.addActor(endButton);
-        stage.addActor(boardGroup);
-        boardGroup.setZIndex(0);
-        tilePreview.setZIndex(1);
 
         //elementy rozgrywki
         boardGroup.addFirstTile();
