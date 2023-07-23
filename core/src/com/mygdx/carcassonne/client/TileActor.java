@@ -54,7 +54,6 @@ public class TileActor extends Actor {
         batch.setColor(Color.WHITE);
     }
 
-    // TODO: 06.04.2023 pamiętać o przerobieniu xToPixels
     // TODO: 06.07.2023 spróbować zmienić aby wyłączyć listener
     class DragTileListener extends DragListener {
         private Vector2 lastTouch = new Vector2();
@@ -113,8 +112,9 @@ public class TileActor extends Actor {
         public void clicked(InputEvent event, float x, float y) {
             if (tile.isNotLocked()) {
                 addAction(Actions.rotateBy(-90f, 0.1F));
-                super.clicked(event, x, y);
+                controller.rotateTile(tile);
                 controller.placeTile(tile);
+                super.clicked(event, x, y);
             }
         }
     }

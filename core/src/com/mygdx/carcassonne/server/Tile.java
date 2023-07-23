@@ -58,6 +58,12 @@ public class Tile {
         };
     }
 
+    public void rotate() {
+        for (TerrainType type : TerrainType.values()) {
+            getTerrain(type).changeSides();
+        }
+    }
+
     public static class Terrain {
         private final TerrainType type;
         private final boolean[] sides;
@@ -86,6 +92,15 @@ public class Tile {
 
         public TerrainType getType() {
             return type;
+        }
+
+        public void changeSides() {
+            int length = sides.length;
+            boolean lastSide = sides[length - 1];
+            for (int i = length - 1; i > 0; i--) {
+                sides[i] = sides[i - 1];
+            }
+            sides[0] = lastSide;
         }
     }
 }

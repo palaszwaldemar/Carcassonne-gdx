@@ -22,4 +22,8 @@ public class Controller {
             tilePreview.spawnNextTile();
         }
     }
+
+    public void rotateTile(Tile tile) {
+        tile.rotate();
+    }
 }
