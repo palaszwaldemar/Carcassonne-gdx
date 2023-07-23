@@ -32,7 +32,7 @@ public class GameScreen implements Screen {
         Gdx.input.setInputProcessor(stage);
 
         boardGroup = new BoardGroup(controller);
-        tilePreview.setPosition(0, GuiParams.HEIGHT - GuiParams.TILE_SIZE);
+        tilePreview.setPosition(0, 0);
         stage.addActor(endButton);
         stage.addActor(boardGroup);
         stage.addActor(tilePreview);
