@@ -10,7 +10,7 @@ public class BoardGroup extends Group {
         this.controller = controller;
     }
 
-    void addFirstTile() {// CHECK: 16.07.2023 nie trzeba zmenić nazwy metody?
+    void addFirstTile() {
         Tile tile = controller.createNextTile();
         TileActor tileActor = new TileActor(tile, controller);
         tileActor.setGridPosition(8, 4);
