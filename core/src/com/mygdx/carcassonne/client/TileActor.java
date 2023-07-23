@@ -84,10 +84,7 @@ public class TileActor extends Actor {
                 float newY = getY() + y - delta.y;
                 int roundedX = (int) (Math.floor(newX / GuiParams.TILE_SIZE) * GuiParams.TILE_SIZE);
                 int roundedY = (int) (Math.floor(newY / GuiParams.TILE_SIZE) * GuiParams.TILE_SIZE);
-                setPosition(roundedX, roundedY);
-
-                tile.setX(Cords.xToCords(roundedX));
-                tile.setY(Cords.yToCords(roundedY));
+                setGridPosition(Cords.xToCords(roundedX), Cords.yToCords(roundedY));
                 controller.placeTile(tile);
             }
         }
