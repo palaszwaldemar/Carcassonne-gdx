@@ -21,12 +21,15 @@ public class BoardService {
         return tilesPile.poll();
     }
 
-    public boolean placeTile(Tile tile) {
-        if (spawnValidator.canSpawnTile(tile)) {
-            tilesBoard.add(tile);
-            tile.setLocked(true);
-            return true;
+    public boolean isValidPlacement(Tile tile) {
+       return spawnValidator.canSpawnTile(tile);
+    }
+
+    public void placeTile(Tile tile) {
+        if (!spawnValidator.canSpawnTile(tile)) {
+            throw new IllegalStateException("not valid place");
         }
-         return false;
+        tilesBoard.add(tile);
+        tile.setLocked(true);
     }
 }

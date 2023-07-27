@@ -7,6 +7,8 @@ public class Controller {
     /* w tym miejscu będziemy umieszać wszystkie komponenty graficzne, z którymi będzie potrzebna interakcja*/
     private TilePreview tilePreview;
     private BoardService boardService = new BoardService();
+    private EndButton endButton;
+    private Tile correctPlacedTile;
 
     public void setTilePreview(TilePreview tilePreview) {
         this.tilePreview = tilePreview;
@@ -17,13 +19,29 @@ public class Controller {
     }
 
     public void placeTile(Tile tile) {
-        boolean correctPlacement = boardService.placeTile(tile);
+        boolean correctPlacement = boardService.isValidPlacement(tile);
         if (correctPlacement) {
-            tilePreview.spawnNextTile();
+            endButton.setActive(true);
+            correctPlacedTile = tile;
+        } else {
+            endButton.setActive(false);
         }
+    }
+
+    public void setEndButton(EndButton endButton) {
+        this.endButton = endButton;
     }
 
     public void rotateTile(Tile tile) {
         tile.rotate();
+    }
+
+    public void endTurn() {
+        if (correctPlacedTile == null) {
+            throw new IllegalStateException("No tile placed!");
+        }
+        boardService.placeTile(correctPlacedTile);
+        tilePreview.spawnNextTile();
+        endButton.setActive(false);
     }
 }

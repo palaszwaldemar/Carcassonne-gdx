@@ -9,11 +9,14 @@ import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 
 public class EndButton extends Actor {
-    private ShapeRenderer renderer;
+    private final ShapeRenderer renderer;
+    private boolean active;
+    private final Controller controller;
 
-    public EndButton() {
+    public EndButton(Controller controller) {
+        this.controller = controller;
         renderer = new ShapeRenderer();
-        setBounds(GuiParams.WIDTH - GuiParams.TILE_SIZE - 10, GuiParams.HEIGHT - GuiParams.TILE_SIZE - 10, GuiParams.TILE_SIZE, GuiParams.TILE_SIZE);
+        setBounds(GuiParams.WIDTH - GuiParams.TILE_SIZE, GuiParams.HEIGHT - GuiParams.TILE_SIZE, GuiParams.TILE_SIZE, GuiParams.TILE_SIZE);
         addListener(new Click());
     }
 
@@ -24,11 +27,21 @@ public class EndButton extends Actor {
         batch.end();  // koniec batch'a, bo ShapeRenderer zaczyna nową serię rysowania
 
         renderer.begin(ShapeRenderer.ShapeType.Filled);
-        renderer.setColor(Color.RED);
+        if (active) {
+            renderer.setColor(Color.GREEN);
+
+        } else {
+            renderer.setColor(Color.RED);
+        }
         renderer.rect(getX(), getY(), getWidth(), getHeight());
         renderer.end();
 
         batch.begin();  // zaczynamy batch na nowo, żeby inne aktory mogły się rysować
+
+    }
+
+    public void setActive(boolean active) {
+        this.active = active;
 
     }
 
@@ -39,9 +52,7 @@ public class EndButton extends Actor {
 
         @Override
         public void clicked(InputEvent event, float x, float y) {
-            System.out.println("---");
-
-            super.clicked(event, x, y);
+            controller.endTurn();
         }
     }
 }

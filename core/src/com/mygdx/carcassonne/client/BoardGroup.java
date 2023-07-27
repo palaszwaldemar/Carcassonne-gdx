@@ -16,5 +16,6 @@ public class BoardGroup extends Group {
         tileActor.setGridPosition(8, 4);
         addActor(tileActor);
         controller.placeTile(tile);
+        controller.endTurn();
     }
 }

@@ -26,7 +26,8 @@ public class GameScreen implements Screen {
         camera = new OrthographicCamera();
         camera.setToOrtho(false, GuiParams.WIDTH, GuiParams.HEIGHT);
 
-        endButton = new EndButton();
+        endButton = new EndButton(controller);
+        controller.setEndButton(endButton);
 
         stage = new Stage(new ScreenViewport(camera), game.getBatch());
         Gdx.input.setInputProcessor(stage);
