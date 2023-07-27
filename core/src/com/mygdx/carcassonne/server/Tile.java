@@ -60,7 +60,7 @@ public class Tile {
 
     public void rotate() {
         for (TerrainType type : TerrainType.values()) {
-            getTerrain(type).changeSides();
+            getTerrain(type).rotate();
         }
     }
 
@@ -94,7 +94,7 @@ public class Tile {
             return type;
         }
 
-        public void changeSides() {
+        public void rotate() {
             int length = sides.length;
             boolean lastSide = sides[length - 1];
             for (int i = length - 1; i > 0; i--) {
