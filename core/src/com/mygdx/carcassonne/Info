@@ -1,7 +1,0 @@
-Położenie kafelka na środku:
-+ 1. Wykorzystać komunikację przez Controller w TilePreview
-+ 2. Sygnał do stworzenia kafelka
-+ 3. Stworzenie kafelka - Tile
-+ 4. Przygotowanie TileAcotr na podstawie Tile
-+ 5. Przygotownie grupy elementów TileActor - BoardGroup
-+ 6. Umieszczenie w tej grupie
