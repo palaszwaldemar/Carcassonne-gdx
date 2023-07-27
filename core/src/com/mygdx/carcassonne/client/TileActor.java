@@ -113,8 +113,9 @@ public class TileActor extends Actor {
             if (tile.isNotLocked()) {
                 addAction(Actions.rotateBy(-90f, 0.1F));
                 controller.rotateTile(tile);
-                controller.placeTile(tile);
-                super.clicked(event, x, y);
+                if (!Gdx.input.isButtonPressed(Input.Buttons.LEFT)) {
+                    controller.placeTile(tile);
+                }
             }
         }
     }
