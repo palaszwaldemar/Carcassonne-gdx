@@ -21,10 +21,6 @@ public class SpawnValidator {
 
     private boolean isConnectedTile(Tile tile) {
         for (Tile boardTile : tilesBoard) {
-            // CHECK: 23.07.2023 czy mogę usunąć sprawdzenie tego warunku?
-            /*if (boardTile.equals(tile)) {
-                continue;
-            }*/
             int otherXDifference = Math.abs(boardTile.getX() - tile.getX());
             int otherYDifference = Math.abs(boardTile.getY() - tile.getY());
             int sum = otherXDifference + otherYDifference;
@@ -52,10 +48,6 @@ public class SpawnValidator {
     private boolean areCorrectlyConnected(Tile tile, TerrainType terrainType) {
         Tile.Terrain tileTerrain = tile.getTerrain(terrainType);
         for (Tile boardTile : tilesBoard) {
-            // CHECK: 23.07.2023 czy mogę usunąć sprawdzenie tego warunku?
-            /*if (boardTile.equals(tile)) {
-                continue;
-            }*/
             Tile.Terrain boardTileTerrain = boardTile.getTerrain(terrainType);
             if (boardTile.getX() == tile.getX() && boardTile.getY() == tile.getY() - 1) {
                 if (boardTileTerrain.getSide(0) != tileTerrain.getSide(2)) {
