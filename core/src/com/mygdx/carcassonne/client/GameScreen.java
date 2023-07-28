@@ -33,7 +33,6 @@ public class GameScreen implements Screen {
         Gdx.input.setInputProcessor(stage);
 
         boardGroup = new BoardGroup(controller);
-        tilePreview.setPosition(0, 0); // CHECK: 23.07.2023 problem z wyświetlaniem 'tilePreview w lewym górnym rogu: aktorzy z tej grupy posiadają koordytany takie jak rodzic
         stage.addActor(endButton);
         stage.addActor(boardGroup);
         stage.addActor(tilePreview);
