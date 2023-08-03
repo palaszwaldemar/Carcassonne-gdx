@@ -52,8 +52,7 @@ public class TileActor extends Actor {
         @Override
         public void drag(InputEvent event, float x, float y, int pointer) {
             if (tile.isNotLocked()) {
-                moveBy(x - getWidth() / 2, y - getHeight() / 2);
-                textureActor.moveBy(x - getWidth() / 2, y - getHeight() / 2);
+                drag(x, y);
             }
         }
 
@@ -67,6 +66,11 @@ public class TileActor extends Actor {
                 setGridPosition(xCord, yCord);
                 controller.placeTile(tile);
             }
+        }
+
+        private void drag(float x, float y) {
+            moveBy(x - getWidth() / 2, y - getHeight() / 2);
+            textureActor.moveBy(x - getWidth() / 2, y - getHeight() / 2);
         }
     }
 
