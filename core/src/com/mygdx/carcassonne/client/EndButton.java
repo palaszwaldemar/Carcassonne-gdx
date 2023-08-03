@@ -52,6 +52,7 @@ public class EndButton extends Actor {
 
         @Override
         public void clicked(InputEvent event, float x, float y) {
+            // CHECK: 03.08.2023 dodać aktora do grupy Board?
             controller.endTurn();
         }
     }

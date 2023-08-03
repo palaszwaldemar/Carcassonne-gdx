@@ -84,6 +84,7 @@ public class TileActor extends Actor {
             if (tile.isNotLocked()) {
                 float newRotation = textureActor.getRotation() - 90f;
                 textureActor.setRotation(newRotation);
+                // CHECK: 03.08.2023 nie ma animacji obrotu kafelka
                 controller.rotateTile(tile);
                 if (!Gdx.input.isButtonPressed(Input.Buttons.LEFT)) {
                     controller.placeTile(tile);
