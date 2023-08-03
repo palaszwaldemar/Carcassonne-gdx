@@ -11,8 +11,8 @@ public class Tile {
     public Tile(char[] directionsRoadChar, char[] directionsCityChar, String name) {
         this.name = name;
 
-        road = new Terrain(TerrainType.ROAD, directionsRoadChar);
-        city = new Terrain(TerrainType.CITY, directionsCityChar);
+        road = new Terrain(directionsRoadChar);
+        city = new Terrain(directionsCityChar);
     }
 
     public void setX(int x) {
@@ -39,14 +39,6 @@ public class Tile {
         return !locked;
     }
 
-    public Terrain getRoad() {
-        return road;
-    }
-
-    public Terrain getCity() {
-        return city;
-    }
-
     public String getName() {
         return name;
     }
@@ -65,11 +57,9 @@ public class Tile {
     }
 
     public static class Terrain {
-        private final TerrainType type;
         private final boolean[] sides;
 
-        public Terrain(TerrainType type, char[] charSides) {
-            this.type = type;
+        public Terrain(char[] charSides) {
             sides = new boolean[4];
 
             for (char direction : charSides) {
@@ -88,10 +78,6 @@ public class Tile {
 
         public boolean getSide(int i) {
             return sides[i];
-        }
-
-        public TerrainType getType() {
-            return type;
         }
 
         public void rotate() {

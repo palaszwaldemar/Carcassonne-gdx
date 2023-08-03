@@ -29,14 +29,6 @@ public class TileActor extends Actor {
         setOrigin(Align.center);
     }
 
-    public void setGridX() {
-        setX(Cords.xToPixels(tile.getX()));
-    }
-
-    public void setGridY() {
-        setY(Cords.yToPixels(tile.getY()));
-    }
-
     public void setGridPosition(int x, int y) {
         setX(Cords.xToPixels(x));
         setY(Cords.yToPixels(y));

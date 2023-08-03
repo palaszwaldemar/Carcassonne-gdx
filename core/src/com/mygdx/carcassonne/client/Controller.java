@@ -6,7 +6,7 @@ import com.mygdx.carcassonne.server.Tile;
 public class Controller {
     /* w tym miejscu będziemy umieszać wszystkie komponenty graficzne, z którymi będzie potrzebna interakcja*/
     private TilePreview tilePreview;
-    private BoardService boardService = new BoardService();
+    private final BoardService boardService = new BoardService();
     private EndButton endButton;
     private Tile correctPlacedTile;
 

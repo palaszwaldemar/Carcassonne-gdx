@@ -19,6 +19,8 @@ public class GameScreen implements Screen {
     public GameScreen(Carcassonne game) {
         this.game = game;
         Controller controller = new Controller();
+        endButton = new EndButton(controller);
+        boardGroup = new BoardGroup(controller);
         tilePreview = new TilePreview(controller);
         controller.setTilePreview(tilePreview);
 
@@ -26,13 +28,11 @@ public class GameScreen implements Screen {
         camera = new OrthographicCamera();
         camera.setToOrtho(false, GuiParams.WIDTH, GuiParams.HEIGHT);
 
-        endButton = new EndButton(controller);
         controller.setEndButton(endButton);
 
         stage = new Stage(new ScreenViewport(camera), game.getBatch());
         Gdx.input.setInputProcessor(stage);
 
-        boardGroup = new BoardGroup(controller);
         stage.addActor(endButton);
         stage.addActor(boardGroup);
         stage.addActor(tilePreview);
@@ -79,16 +79,5 @@ public class GameScreen implements Screen {
     public void dispose() {
 
     }
-
-// sterowanie przyciskiem, kiedy aktywny kiedy nie
-/*    private boolean handleEndButtonClick(int pixelX, int pixelY) {
-        if (!endButton.isDisable() && endButton.isClicked(pixelX, pixelY)) {
-            drawNextTile();
-            endButton.disable();
-            return true;
-        }
-        return false;
-    }*/
-
 }
 
