@@ -31,8 +31,12 @@ public class TileActor extends Group {
     public void setGridPosition(int x, int y) {
         setX(Cords.xToPixels(x));
         setY(Cords.yToPixels(y));
-        tile.setX(x);
+        tile.setX(x); //todo czy nie do serwisu?
         tile.setY(y);
+    }
+
+    public Tile getTile() {
+        return tile;
     }
 
     class DragTileListener extends DragListener {
@@ -57,7 +61,7 @@ public class TileActor extends Group {
                 int xCord = (int) event.getStageX() / 100;
                 int yCord = (int) event.getStageY() / 100;
                 setGridPosition(xCord, yCord);
-                controller.placeTile(tile);
+                controller.placeTile(TileActor.this);
             }
         }
     }
@@ -73,7 +77,7 @@ public class TileActor extends Group {
                 textureActor.addAction(Actions.rotateBy(-90f, 0.1F));
                 controller.rotateTile(tile);
                 if (!Gdx.input.isButtonPressed(Input.Buttons.LEFT)) {
-                    controller.placeTile(tile);
+                    controller.placeTile(TileActor.this);
                 }
             }
         }

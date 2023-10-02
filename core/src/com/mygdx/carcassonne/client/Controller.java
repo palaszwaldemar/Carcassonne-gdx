@@ -8,28 +8,21 @@ public class Controller {
     private TilePreview tilePreview;
     private final BoardService boardService = new BoardService();
     private EndButton endButton;
-    private Tile correctPlacedTile;
-
-    public void setTilePreview(TilePreview tilePreview) {
-        this.tilePreview = tilePreview;
-    }
+    private TileActor correctPlacedTileActor;
+    private BoardGroup boardGroup;
 
     public Tile createNextTile() {
         return boardService.nextTile();
     }
 
-    public void placeTile(Tile tile) {
-        boolean correctPlacement = boardService.isValidPlacement(tile);
+    public void placeTile(TileActor tileActor) {
+        boolean correctPlacement = boardService.isValidPlacement(tileActor.getTile());
         if (correctPlacement) {
             endButton.setActive(true);
-            correctPlacedTile = tile;
+            correctPlacedTileActor = tileActor;
         } else {
             endButton.setActive(false);
         }
-    }
-
-    public void setEndButton(EndButton endButton) {
-        this.endButton = endButton;
     }
 
     public void rotateTile(Tile tile) {
@@ -37,11 +30,24 @@ public class Controller {
     }
 
     public void endTurn() {
-        if (correctPlacedTile == null) {
+        if (correctPlacedTileActor == null) {
             throw new IllegalStateException("No tile placed!");
         }
-        boardService.placeTile(correctPlacedTile);
+        boardService.placeTile(correctPlacedTileActor.getTile());
         tilePreview.spawnNextTile();
         endButton.setActive(false);
+        boardGroup.attach(correctPlacedTileActor);
+    }
+
+    public void setBoardGroup(BoardGroup boardGroup) {
+        this.boardGroup = boardGroup;
+    }
+
+    public void setTilePreview(TilePreview tilePreview) {
+        this.tilePreview = tilePreview;
+    }
+
+    public void setEndButton(EndButton endButton) {
+        this.endButton = endButton;
     }
 }

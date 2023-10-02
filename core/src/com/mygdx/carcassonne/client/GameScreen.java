@@ -23,6 +23,7 @@ public class GameScreen implements Screen {
         boardGroup = new BoardGroup(controller);
         tilePreview = new TilePreview(controller);
         controller.setTilePreview(tilePreview);
+        controller.setBoardGroup(boardGroup);
 
         //przygotowanie elementów graficznych
         camera = new OrthographicCamera();
