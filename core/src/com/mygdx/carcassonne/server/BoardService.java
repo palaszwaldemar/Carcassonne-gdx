@@ -22,7 +22,7 @@ public class BoardService {
     }
 
     public boolean isValidPlacement(Tile tile) {
-       return spawnValidator.canSpawnTile(tile);
+        return spawnValidator.canSpawnTile(tile);
     }
 
     public void placeTile(Tile tile) {

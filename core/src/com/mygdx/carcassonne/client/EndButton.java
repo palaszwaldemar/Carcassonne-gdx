@@ -23,26 +23,20 @@ public class EndButton extends Actor {
     @Override
     public void draw(Batch batch, float parentAlpha) {
         super.draw(batch, parentAlpha);
-
         batch.end();  // koniec batch'a, bo ShapeRenderer zaczyna nową serię rysowania
-
         renderer.begin(ShapeRenderer.ShapeType.Filled);
         if (active) {
             renderer.setColor(Color.GREEN);
-
         } else {
             renderer.setColor(Color.RED);
         }
         renderer.rect(getX(), getY(), getWidth(), getHeight());
         renderer.end();
-
         batch.begin();  // zaczynamy batch na nowo, żeby inne aktory mogły się rysować
-
     }
 
     public void setActive(boolean active) {
         this.active = active;
-
     }
 
     class Click extends ClickListener {

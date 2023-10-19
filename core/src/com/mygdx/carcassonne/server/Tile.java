@@ -10,7 +10,6 @@ public class Tile {
 
     public Tile(char[] directionsRoadChar, char[] directionsCityChar, String name) {
         this.name = name;
-
         road = new Terrain(directionsRoadChar);
         city = new Terrain(directionsCityChar);
     }
@@ -61,7 +60,6 @@ public class Tile {
 
         public Terrain(char[] charSides) {
             sides = new boolean[4];
-
             for (char direction : charSides) {
                 setSide(direction);
             }

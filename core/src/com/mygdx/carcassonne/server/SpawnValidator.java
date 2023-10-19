@@ -3,7 +3,6 @@ package com.mygdx.carcassonne.server;
 import java.util.List;
 
 public class SpawnValidator {
-
     private final List<Tile> tilesBoard;
 
     public SpawnValidator(List<Tile> tilesBoard) {

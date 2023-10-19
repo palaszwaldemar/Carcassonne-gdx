@@ -24,20 +24,15 @@ public class GameScreen implements Screen {
         tilePreview = new TilePreview(controller);
         controller.setTilePreview(tilePreview);
         controller.setBoardGroup(boardGroup);
-
         //przygotowanie elementów graficznych
         camera = new OrthographicCamera();
         camera.setToOrtho(false, GuiParams.WIDTH, GuiParams.HEIGHT);
-
         controller.setEndButton(endButton);
-
         stage = new Stage(new ScreenViewport(camera), game.getBatch());
         Gdx.input.setInputProcessor(stage);
-
         stage.addActor(endButton);
         stage.addActor(boardGroup);
         stage.addActor(tilePreview);
-
         //elementy rozgrywki
         boardGroup.addFirstTile();
     }
@@ -53,7 +48,6 @@ public class GameScreen implements Screen {
 
     @Override
     public void show() {
-
     }
 
     @Override
@@ -63,22 +57,18 @@ public class GameScreen implements Screen {
 
     @Override
     public void pause() {
-
     }
 
     @Override
     public void resume() {
-
     }
 
     @Override
     public void hide() {
-
     }
 
     @Override
     public void dispose() {
-
     }
 }
 

@@ -9,7 +9,6 @@ import java.util.Queue;
 import java.util.Scanner;
 
 public class TileFactory {
-
     Queue<Tile> getListOfTile() {
         LinkedList<Tile> tiles = new LinkedList<>();
         FileHandle fileHandle = Gdx.files.internal("TilesInfo.csv"); // TODO: 27.04.2023 wyeliminować wczytywanie pliku

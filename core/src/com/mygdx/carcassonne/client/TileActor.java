@@ -40,7 +40,6 @@ public class TileActor extends Group {
     }
 
     class DragTileListener extends DragListener {
-
         @Override
         public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
             return super.touchDown(event, x, y, pointer, button);
