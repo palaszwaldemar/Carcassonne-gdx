@@ -24,6 +24,7 @@ public class TileActor extends Group {
         setBounds(0, 0, GuiParams.TILE_SIZE, GuiParams.TILE_SIZE);
         addListener(new DragTileListener());
         addListener(new RightClick());
+        addListener(new MeepleListener());
         addActor(textureActor);
         setOrigin(Align.center);
     }
@@ -78,6 +79,16 @@ public class TileActor extends Group {
                 if (!Gdx.input.isButtonPressed(Input.Buttons.LEFT)) {
                     controller.placeTile(TileActor.this);
                 }
+            }
+        }
+    }
+
+    private class MeepleListener extends DragListener {
+        @Override
+        public void touchUp(InputEvent event, float x, float y, int pointer, int button) {
+            super.touchUp(event, x, y, pointer, button);
+            if (!tile.isNotLocked() ) {
+                System.out.println("x = " + x + ", y = " + y);
             }
         }
     }
