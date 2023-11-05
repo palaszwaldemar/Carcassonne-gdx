@@ -16,7 +16,8 @@ public class EndButton extends Actor {
     public EndButton(Controller controller) {
         this.controller = controller;
         renderer = new ShapeRenderer();
-        setBounds(GuiParams.WIDTH - GuiParams.TILE_SIZE, GuiParams.HEIGHT - GuiParams.TILE_SIZE, GuiParams.TILE_SIZE, GuiParams.TILE_SIZE);
+        setBounds(GuiParams.WIDTH - GuiParams.TILE_SIZE, GuiParams.HEIGHT - GuiParams.TILE_SIZE,
+                GuiParams.TILE_SIZE, GuiParams.TILE_SIZE);
         addListener(new Click());
     }
 

@@ -19,7 +19,8 @@ public class TileActor extends Group {
     public TileActor(Tile tile, Controller controller) {
         this.controller = controller;
         this.tile = tile;
-        Texture image = new Texture(Gdx.files.internal("tiles/PNG/Base_Game_C2_Tile_" + tile.getName() + ".png"));
+        Texture image = new Texture(
+                Gdx.files.internal("tiles/PNG/Base_Game_C2_Tile_" + tile.getName() + ".png"));
         textureActor = new TextureActor(image, getX(), getY());
         setBounds(0, 0, GuiParams.TILE_SIZE, GuiParams.TILE_SIZE);
         addListener(new DragTileListener());
@@ -87,7 +88,7 @@ public class TileActor extends Group {
         @Override
         public void touchUp(InputEvent event, float x, float y, int pointer, int button) {
             super.touchUp(event, x, y, pointer, button);
-            if (!tile.isNotLocked() ) {
+            if (!tile.isNotLocked()) {
                 System.out.println("x = " + x + ", y = " + y);
             }
         }

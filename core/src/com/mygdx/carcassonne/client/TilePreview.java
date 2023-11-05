@@ -11,7 +11,8 @@ public class TilePreview extends Group {
     private final Image image = new Image(texture);
 
     public TilePreview(Controller controller) {
-        setBounds(0, GuiParams.HEIGHT - GuiParams.TILE_SIZE, GuiParams.TILE_SIZE, GuiParams.TILE_SIZE);
+        setBounds(0, GuiParams.HEIGHT - GuiParams.TILE_SIZE, GuiParams.TILE_SIZE,
+                GuiParams.TILE_SIZE);
         this.controller = controller;
         addActor(image);
     }
