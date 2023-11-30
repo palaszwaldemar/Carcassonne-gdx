@@ -15,6 +15,7 @@ public class GameScreen implements Screen {
     private final TilePreview tilePreview;
     private final BoardGroup boardGroup;
     private final EndButton endButton;
+    private final MeepleActor meepleActor;
 
     public GameScreen(Carcassonne game) {
         this.game = game;
@@ -22,6 +23,7 @@ public class GameScreen implements Screen {
         endButton = new EndButton(controller);
         boardGroup = new BoardGroup(controller);
         tilePreview = new TilePreview(controller);
+        meepleActor = new MeepleActor();
         controller.setTilePreview(tilePreview);
         controller.setBoardGroup(boardGroup);
         //przygotowanie elementów graficznych
@@ -33,6 +35,7 @@ public class GameScreen implements Screen {
         stage.addActor(endButton);
         stage.addActor(boardGroup);
         stage.addActor(tilePreview);
+        stage.addActor(meepleActor);
         //elementy rozgrywki
         boardGroup.addFirstTile();
     }
