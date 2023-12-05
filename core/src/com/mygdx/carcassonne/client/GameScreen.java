@@ -4,6 +4,7 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.OrthographicCamera;
+import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.utils.ScreenUtils;
 import com.badlogic.gdx.utils.viewport.ScreenViewport;
@@ -15,15 +16,13 @@ public class GameScreen implements Screen {
     private final TilePreview tilePreview;
     private final BoardGroup boardGroup;
     private final EndButton endButton;
-    private final MeepleActor meepleActor;
 
     public GameScreen(Carcassonne game) {
         this.game = game;
-        Controller controller = new Controller();
+        Controller controller = new Controller(this);
         endButton = new EndButton(controller);
         boardGroup = new BoardGroup(controller);
         tilePreview = new TilePreview(controller);
-        meepleActor = new MeepleActor();
         controller.setTilePreview(tilePreview);
         controller.setBoardGroup(boardGroup);
         //przygotowanie elementów graficznych
@@ -35,9 +34,12 @@ public class GameScreen implements Screen {
         stage.addActor(endButton);
         stage.addActor(boardGroup);
         stage.addActor(tilePreview);
-        stage.addActor(meepleActor);
         //elementy rozgrywki
         boardGroup.addFirstTile();
+    }
+
+    void addActor(Actor actor) {
+        stage.addActor(actor);
     }
 
     @Override

@@ -41,7 +41,7 @@ public class TileActor extends Group {
         return tile;
     }
 
-    class DragTileListener extends DragListener {
+    private class DragTileListener extends DragListener {
         @Override
         public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
             return super.touchDown(event, x, y, pointer, button);
@@ -59,8 +59,8 @@ public class TileActor extends Group {
             super.touchUp(event, x, y, pointer, button);
             if (tile.isNotLocked()) {
                 getStage().addActor(TileActor.this);
-                int xCord = (int) event.getStageX() / 100;
-                int yCord = (int) event.getStageY() / 100;
+                int xCord = (int) event.getStageX() / GuiParams.TILE_SIZE;
+                int yCord = (int) event.getStageY() / GuiParams.TILE_SIZE;
                 setGridPosition(xCord, yCord);
                 controller.placeTile(TileActor.this);
             }

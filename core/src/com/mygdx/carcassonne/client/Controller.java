@@ -10,6 +10,11 @@ public class Controller {
     private EndButton endButton;
     private TileActor correctPlacedTileActor;
     private BoardGroup boardGroup;
+    private GameScreen gameScreen;
+
+    public Controller(GameScreen gameScreen) {
+        this.gameScreen = gameScreen;
+    }
 
     public Tile createNextTile() {
         return boardService.nextTile();
@@ -29,7 +34,7 @@ public class Controller {
         tile.rotate();
     }
 
-    public void endTurn() {
+    public void placeTileAction() {
         if (correctPlacedTileActor == null) {
             throw new IllegalStateException("No tile placed!");
         }
@@ -37,6 +42,17 @@ public class Controller {
         tilePreview.spawnNextTile();
         endButton.setActive(false);
         boardGroup.attach(correctPlacedTileActor);
+    }
+
+    public void endTurn() {
+        placeTileAction();
+        prepareMeeple();
+    }
+
+    private void prepareMeeple() {
+        MeepleActor meepleActor = new MeepleActor();
+        gameScreen.addActor(meepleActor);
+
     }
 
     public void setBoardGroup(BoardGroup boardGroup) {
